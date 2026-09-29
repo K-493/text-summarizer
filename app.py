@@ -16,7 +16,7 @@ user_text = st.text_area("Write your text here")
 if st.button("Summarize"):
     if user_text.strip():
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[
                 {
                     "role": "user",
@@ -25,7 +25,10 @@ if st.button("Summarize"):
             ]
         )
 
-    summary = response.choices[0].message.content
+        summary = response.choices[0].message.content
 
-    st.write("Summarized text:")
-    st.write(summary)
+        st.write("Summarized text:")
+        st.write(summary)
+
+    else:
+        st.warning("Please enter some text to summarize.")
